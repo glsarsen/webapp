@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ get_page_display_name(page_name) }}
+{% endblock %}
+
+{% block content %}
+    {% if "username" in session %}
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ url_for('edit_page', page_name=page_name) }}">Edit page</a>
+        <a class="btn btn-danger" href="{{ url_for('delete_page', page_name=page_name) }}">Delete page</a>
+    </div>
+    {% endif %}
+
+    <div class="h-100 p-5 text-bg-dark rounded-3">
+        <h1>{{ get_page_display_name(page_name) }}</h1>
+    </div>
+
+    <div class="h-100 p-5 text-bg-dark rounded-3">
+        {{ contents | safe }}
+    </div>
+{% endblock %}
